@@ -18,10 +18,6 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Add configuration here as well for the production stage
-RUN npm config set fetch-retry-maxtimeout 120000 \
-  && npm config set fetch-retries 10
-
 # Copy package files and install production dependencies only
 COPY package*.json ./
 RUN npm install --production && npm cache clean --force
