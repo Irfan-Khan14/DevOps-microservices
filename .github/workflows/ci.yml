@@ -46,14 +46,14 @@ jobs:
           if [ "${{ matrix.service }}" == "frontend" ]; then
             BUILD_PATH="projects/boutique-microservices/frontend"
           else
-            BUILD_PATH="projects/boutique-microservices/${{ matrix.service }}"
+            BUILD_PATH="projects/boutique-microservices/backend/services/${{ matrix.service }}"
           fi
 
           echo "Building from $BUILD_PATH"
 
           docker build \
             -t ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.$AWS_REGION.amazonaws.com/${{ matrix.service }}:$IMAGE_TAG \
-            $BUILD_PATH
+          $BUILD_PATH
 
       - name: Push Docker Image
         run: |
